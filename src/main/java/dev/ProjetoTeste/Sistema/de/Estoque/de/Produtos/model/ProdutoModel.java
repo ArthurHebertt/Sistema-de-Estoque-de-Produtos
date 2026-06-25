@@ -1,6 +1,8 @@
 package dev.ProjetoTeste.Sistema.de.Estoque.de.Produtos.model;
 
+import dev.ProjetoTeste.Sistema.de.Estoque.de.Produtos.categoria.Categorias;
 import jakarta.persistence.*;
+
 
 @Entity
 @Table(name = "tb_estoque")
@@ -18,6 +20,10 @@ public class ProdutoModel {
 
     private int quantidade;
 
+    @ManyToOne // Um produto tem uma unica categoria
+    @JoinColumn(name = "categoria_id") // Foreing Key
+    private Categorias categoria;
+
     public ProdutoModel(Long id, String nome, String descricao, Integer preco, int quantidade) {
         this.id = id;
         this.nome = nome;
@@ -30,39 +36,20 @@ public class ProdutoModel {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     public Integer getPreco() {
         return preco;
-    }
-
-    public void setPreco(Integer preco) {
-        this.preco = preco;
     }
 
     public int getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
 }
