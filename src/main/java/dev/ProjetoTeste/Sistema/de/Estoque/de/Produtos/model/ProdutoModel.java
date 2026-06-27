@@ -7,6 +7,7 @@ import lombok.*;
 
 @Entity
 @Table(name = "tb_produtos")
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -16,14 +17,19 @@ public class ProdutoModel {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
 
+    @Column (name = "id")
     private Long id;
 
+    @Column(name = "nome")
     private String nome;
 
+    @Column (name = "descrição")
     private String descricao;
 
+    @Column(name = "preço")
     private Integer preco;
 
+    @Column(name = "quantidade")
     private int quantidade;
 
     @ManyToOne // Um produto tem uma unica categoria
