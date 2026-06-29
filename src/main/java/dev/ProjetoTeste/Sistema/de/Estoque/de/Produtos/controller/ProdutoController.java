@@ -3,7 +3,7 @@ package dev.ProjetoTeste.Sistema.de.Estoque.de.Produtos.controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/produtos")
 public class ProdutoController {
 
     @GetMapping("/boasvindas")
