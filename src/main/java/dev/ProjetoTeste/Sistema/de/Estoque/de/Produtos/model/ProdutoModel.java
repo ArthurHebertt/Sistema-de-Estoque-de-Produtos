@@ -4,6 +4,8 @@ import dev.ProjetoTeste.Sistema.de.Estoque.de.Produtos.categoria.Categorias;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 
 @Entity
 @Table(name = "tb_produtos")
@@ -27,7 +29,7 @@ public class ProdutoModel {
     private String descricao;
 
     @Column(name = "preço")
-    private Integer preco;
+    private BigDecimal preco;
 
     @Column(name = "quantidade")
     private int quantidade;
