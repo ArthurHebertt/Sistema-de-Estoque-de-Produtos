@@ -39,21 +39,9 @@ public class ProdutoService {
 
     // Listar produtos por ID
     public ProdutoDTO listarPorId(Long id) {
-        Optional <ProdutoModel> produto = produtoRepository.findById(id);
-         return produto.map(produtoMapper::map).orElse(null);
+        ProdutoModel produto = produtoRepository.findById(id).orElseThrow(()-> new RuntimeException("Produto não encontrado"));
+        return produtoMapper.map(produto);
    }
-//  outra altertativa para procurar por ID
-//    public ProdutoModel listarPorId(Long id) {
-//        Optional<ProdutoModel> produtoModel = produtoRepository.findById(id);
-//        return produtoModel.orElse(null);
-//    }
-
-    // Editar Produto retornando null
-//    public ProdutoModel editarProduto(Long id, ProdutoModel produto) {
-//        if (produtoRepository.existsById(id)){
-//            produto.setId(id);
-//            return produtoRepository.save(produto);
-//        } else return null;
 
     // Editar produto
 

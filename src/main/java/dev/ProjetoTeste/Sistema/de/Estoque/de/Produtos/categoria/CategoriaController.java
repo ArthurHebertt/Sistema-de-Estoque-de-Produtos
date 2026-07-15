@@ -17,25 +17,25 @@ public class CategoriaController {
     }
 
     @PostMapping("/criarCategoria")
-    public ResponseEntity<String> criarCategoria(@RequestBody Categorias categorias) {
-        categoriaService.adicionar(categorias);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Categoria " + categorias.getNome() + " foi criada");
+    public ResponseEntity<String> criarCategoria(@RequestBody CategoriaDTO categoria) {
+        categoriaService.adicionar(categoria);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Categoria " + categoria.getNome() + " foi criada");
     }
 
     @GetMapping("/listarCategoria")
-    public ResponseEntity<List<Categorias>> listarCategoria() {
-        return ResponseEntity.ok(categoriaService.lista());
+    public ResponseEntity<List<CategoriaDTO>> listarCategoria() {
+        return ResponseEntity.ok(categoriaService.listar());
     }
 
     @GetMapping("/listarCategoria/{id}")
-    public ResponseEntity<Categorias> listarPorId(@PathVariable Long id) {
+    public ResponseEntity<CategoriaDTO> listarPorId(@PathVariable Long id) {
         return ResponseEntity.ok(categoriaService.listarPorId(id));
     }
 
     @PutMapping("/editarCategoria/{id}")
-    public ResponseEntity<String> editarCategoria(@PathVariable Long id, @RequestBody Categorias categorias) {
-        categoriaService.editar(id,categorias);
-        return ResponseEntity.ok("Categoria " + categorias.getNome() + " foi editada");
+    public ResponseEntity<String> editarCategoria(@PathVariable Long id, @RequestBody CategoriaDTO categoria) {
+        categoriaService.editar(id,categoria);
+        return ResponseEntity.ok("Categoria " + categoria.getNome() + " foi editada");
     }
 
     @DeleteMapping("/deletarCategoria/{id}")

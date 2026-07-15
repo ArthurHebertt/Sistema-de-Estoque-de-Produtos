@@ -2,42 +2,56 @@ package dev.ProjetoTeste.Sistema.de.Estoque.de.Produtos.categoria;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoriaService {
 
     private final CategoriaRepository categoriaRepository;
+    private CategoriaMapper categoriaMapper;
 
-    public CategoriaService(CategoriaRepository categoriaRepository) {
+    public CategoriaService(CategoriaRepository categoriaRepository, CategoriaMapper categoriaMapper) {
         this.categoriaRepository = categoriaRepository;
+        this.categoriaMapper = categoriaMapper;
     }
 
     // adicionar
-    public Categorias adicionar(Categorias categorias) {
-        return categoriaRepository.save(categorias);
+    public CategoriaDTO adicionar (CategoriaDTO categoriaDTO) {
+        Categorias categorias = categoriaMapper.map(categoriaDTO);
+        categorias = categoriaRepository.save(categorias);
+        return categoriaMapper.map(categorias);
     }
 
     // Listar
-    public List<Categorias> lista () {
-        return categoriaRepository.findAll();
+    public List<CategoriaDTO> listar () {
+        List<Categorias> lista = categoriaRepository.findAll();
+        return lista.stream()
+                .map(categoriaMapper::map)
+                .collect(Collectors.toList());
     }
 
     // Listar Por id
-    public Categorias listarPorId (Long id) {
-        return categoriaRepository.findById(id).orElseThrow(()-> new RuntimeException("Categoria não encontrada"));
+    public CategoriaDTO listarPorId (Long id) {
+        Categorias categoria = categoriaRepository.findById(id).orElseThrow(()-> new RuntimeException("Produto não encontrado"));
+        return categoriaMapper.map(categoria);
+
     }
 
     // editar por id
-    public Categorias editar (Long id, Categorias categorias) {
-        categoriaRepository.findById(id).orElseThrow(()-> new RuntimeException("Categoria não encontrada"));
-        categorias.setId(id);
-        return categoriaRepository.save(categorias);
-
+    public CategoriaDTO editar (Long id, CategoriaDTO categoriaDTO) {
+        Optional<Categorias> acharCategoria = categoriaRepository.findById(id);
+        if (acharCategoria.isPresent()) {
+            Categorias categoriaAtualizada = categoriaMapper.map(categoriaDTO);
+            categoriaAtualizada.setId(id);
+            Categorias categoriaSalva = categoriaRepository.save(categoriaAtualizada);
+            return categoriaMapper.map(categoriaSalva);
+        } return null;
     }
 
     // deletar por id
     public void deletar(Long id) {
-        categoriaRepository.findById(id).orElseThrow(()-> new RuntimeException("Categoria não encontrada"));
+       Categorias categoria = categoriaRepository.findById(id).orElseThrow(()-> new RuntimeException("Categoria não encontrada"));
         categoriaRepository.deleteById(id);
     }
 
