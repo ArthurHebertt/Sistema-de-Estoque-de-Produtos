@@ -1,5 +1,6 @@
 package dev.ProjetoTeste.Sistema.de.Estoque.de.Produtos.controller;
 
+import dev.ProjetoTeste.Sistema.de.Estoque.de.Produtos.dto.ProdutoDTO;
 import dev.ProjetoTeste.Sistema.de.Estoque.de.Produtos.model.ProdutoModel;
 import dev.ProjetoTeste.Sistema.de.Estoque.de.Produtos.service.ProdutoService;
 import org.springframework.http.HttpStatus;
@@ -25,30 +26,30 @@ public class ProdutoController {
 
     // Adicionar Produto (CREAT)
     @PostMapping("/adicionar")
-    public ResponseEntity<String> adicionarProduto(@RequestBody ProdutoModel produtoModel) {
-        produtoModel = produtoService.adicionarProduto(produtoModel);
+    public ResponseEntity<String> adicionarProduto(@RequestBody ProdutoDTO produtoDTO) {
+        produtoDTO = produtoService.adicionarProduto(produtoDTO);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body("Produto: " + produtoModel.getNome() + " adicionado com sucesso");
+                .body("Produto: " + produtoDTO.getNome() + " adicionado com sucesso");
     }
 
 
     // Mostrar todos os Produtos (READ)
     @GetMapping("/listar")
-    public ResponseEntity<List<ProdutoModel>> listaDeProdutos() {
+    public ResponseEntity<List<ProdutoDTO>> listaDeProdutos() {
         return ResponseEntity.ok(produtoService.listaDeProdutos());
     }
 
 
     // Procurar Produto por Id (READ)
-    @GetMapping("/produtoPorId/{id}")
-    public ResponseEntity<ProdutoModel> produtoPorid(@PathVariable Long id) {
+    @GetMapping("/listar/{id}")
+    public ResponseEntity<ProdutoDTO> produtoPorid(@PathVariable Long id) {
         return ResponseEntity.ok(produtoService.listarPorId(id));
     }
 
 
     // Alterar dados do Produto (UPDATE)
     @PutMapping("/editar/{id}")
-    public ResponseEntity<String> editarProduto(@PathVariable Long id, @RequestBody ProdutoModel produto) {
+    public ResponseEntity<String> editarProduto(@PathVariable Long id, @RequestBody ProdutoDTO produto) {
         produtoService.editarProduto(id, produto);
         return ResponseEntity.ok("Produto " + produto.getNome() + " foi atualizado");
 

@@ -18,7 +18,6 @@ public class ProdutoModel {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-
     @Column (name = "id")
     private Long id;
 
@@ -33,6 +32,9 @@ public class ProdutoModel {
 
     @Column(name = "quantidade")
     private int quantidade;
+
+    @Column(name = "Img_url")
+    private String imgUrl;
 
     @ManyToOne // Um produto tem uma unica categoria
     @JoinColumn(name = "categoria_id") // Foreing Key
