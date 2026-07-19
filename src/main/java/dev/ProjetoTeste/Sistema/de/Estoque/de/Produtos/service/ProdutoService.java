@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class ProdutoService {
+public final class ProdutoService {
 
-    public ProdutoRepository produtoRepository;
-    private ProdutoMapper produtoMapper;
+    public final ProdutoRepository produtoRepository;
+    private final ProdutoMapper produtoMapper;
 
     public ProdutoService(ProdutoRepository produtoRepository, ProdutoMapper produtoMapper) {
         this.produtoRepository = produtoRepository;

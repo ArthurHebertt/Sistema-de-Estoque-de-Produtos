@@ -1,7 +1,6 @@
 package dev.ProjetoTeste.Sistema.de.Estoque.de.Produtos.controller;
 
 import dev.ProjetoTeste.Sistema.de.Estoque.de.Produtos.dto.ProdutoDTO;
-import dev.ProjetoTeste.Sistema.de.Estoque.de.Produtos.model.ProdutoModel;
 import dev.ProjetoTeste.Sistema.de.Estoque.de.Produtos.service.ProdutoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,7 @@ import java.util.List;
 @RequestMapping("/produtos")
 public class ProdutoController {
 
-    public ProdutoService produtoService;
+    public final ProdutoService produtoService;
 
     public ProdutoController(ProdutoService produtoService) {
         this.produtoService = produtoService;

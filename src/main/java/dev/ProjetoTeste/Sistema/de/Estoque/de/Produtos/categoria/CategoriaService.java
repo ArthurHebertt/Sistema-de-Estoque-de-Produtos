@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class CategoriaService {
 
     private final CategoriaRepository categoriaRepository;
-    private CategoriaMapper categoriaMapper;
+    private final CategoriaMapper categoriaMapper;
 
     public CategoriaService(CategoriaRepository categoriaRepository, CategoriaMapper categoriaMapper) {
         this.categoriaRepository = categoriaRepository;
@@ -33,7 +33,7 @@ public class CategoriaService {
 
     // Listar Por id
     public CategoriaDTO listarPorId (Long id) {
-        Categorias categoria = categoriaRepository.findById(id).orElseThrow(()-> new RuntimeException("Produto não encontrado"));
+        Categorias categoria = categoriaRepository.findById(id).orElseThrow(()-> new RuntimeException("Categoria não encontrado"));
         return categoriaMapper.map(categoria);
 
     }
