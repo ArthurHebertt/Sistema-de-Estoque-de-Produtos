@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Setter
 @Getter
+@ToString (exclude = "categoria_id")
 public class ProdutoModel {
 
     @Id
