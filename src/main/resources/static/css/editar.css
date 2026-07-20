@@ -1,0 +1,246 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    background: linear-gradient(
+        135deg,
+        #e0e7ff,
+        #f8fafc
+    );
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 40px;
+
+}
+
+
+/* ===========================
+   Preview do Produto
+=========================== */
+
+
+.Previw-do-Produto {
+
+    width: 350px;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,0.12);
+
+}
+
+
+.Previw-do-Produto img {
+
+    width: 230px;
+
+    height: 230px;
+
+    object-fit: contain;
+
+    border-radius: 15px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.Previw-do-Produto h2 {
+
+    color: #1e293b;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+}
+
+
+
+/* ===========================
+   Formulário
+=========================== */
+
+
+form {
+
+    width: 450px;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,0.12);
+
+}
+
+
+form::before {
+
+    content: "Editar Produto";
+
+    display: block;
+
+    text-align: center;
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    color: #1e293b;
+
+    margin-bottom: 30px;
+
+}
+
+
+
+input {
+
+    width: 100%;
+
+    padding: 14px;
+
+    margin-bottom: 18px;
+
+    border-radius: 12px;
+
+    border: 1px solid #cbd5e1;
+
+    background: #f8fafc;
+
+    font-size: 15px;
+
+    transition: .3s;
+
+}
+
+
+
+input:focus {
+
+    outline: none;
+
+    background: white;
+
+    border-color: #2563eb;
+
+    box-shadow:
+    0 0 0 4px rgba(37,99,235,0.15);
+
+}
+
+
+
+input::placeholder {
+
+    color:#94a3b8;
+
+}
+
+
+
+/* ===========================
+   Botão
+=========================== */
+
+
+button {
+
+    width: 100%;
+
+    padding: 15px;
+
+    margin-top: 10px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #2563eb;
+
+    color:white;
+
+    font-size: 17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+
+button:hover {
+
+    background:#1d4ed8;
+
+    transform: translateY(-3px);
+
+}
+
+
+button:active {
+
+    transform:scale(.98);
+
+}
+
+
+
+/* ===========================
+   Responsividade
+=========================== */
+
+
+@media(max-width:850px){
+
+
+    body {
+
+        flex-direction: column;
+
+        padding: 20px;
+
+    }
+
+
+    .Previw-do-Produto {
+
+        width: 90%;
+
+    }
+
+
+    form {
+
+        width: 90%;
+
+    }
+
+}

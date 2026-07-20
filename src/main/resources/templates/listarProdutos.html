@@ -1,0 +1,65 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <link rel="stylesheet" th:href="@{/css/listar.css}">
+    <meta charset="UTF-8">
+    <title>Tabela de Produtos</title>
+
+</head>
+<body>
+<h1>Lista de Produtos</h1>
+<h2><a th:href="@{/produtos/ui/adicionar}"
+       class="btn btn-adicionar"
+>Cadastrar novo produto</a></h2>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Imagem</th>
+        <th>Descrição</th>
+        <th>Preço</th>
+        <th>Quantidade</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+
+
+
+    <tr th:each="produto : ${produtos}">
+        <td th:text="${produto.id}"></td>
+        <td th:text="${produto.nome}"></td>
+        <td>
+            <img th:src="${produto.imgUrl}" width="100">
+        </td>
+        <td th:text="${produto.descricao}"></td>
+        <td th:text="${produto.preco}"></td>
+        <td th:text="${produto.quantidade}"></td>
+
+        <td>
+
+            <a th:href="@{/produtos/ui/editar/{id}(id=${produto.id})}"
+               class="btn btn-alterar"
+                >Alterar</a>
+            <a th:href="@{/produtos/ui/deletarProduto/{id}(id=${produto.id})}"
+               class="btn btn-deletar">
+                Deletar</a>
+
+        </td>
+
+    </tr>
+
+
+
+    </tbody>
+</table>
+
+
+
+
+
+</body>
+</html>
+    

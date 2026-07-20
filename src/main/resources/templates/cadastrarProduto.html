@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/cadastro.css}">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Cadastrar Produto</title>
+</head>
+<body>
+<form th:object="${produto}"
+      th:action="@{/produtos/ui/criar}"
+      th:method="post">
+
+
+    <input type="text" th:field="*{nome}" placeholder="Nome">
+
+    <input type="text" th:field="*{descricao}" placeholder="Descricao">
+
+    <input type="number" th:field="*{preco}" placeholder="Preço">
+
+    <input type="quantidade" th:field="*{quantidade}" placeholder="Quantidade">
+
+    <input type="image" th:field="*{imgUrl}" placeholder="Imagem">
+
+    <button type="submit">Salvar</button>
+</form>
+
+</body>
+</html>
