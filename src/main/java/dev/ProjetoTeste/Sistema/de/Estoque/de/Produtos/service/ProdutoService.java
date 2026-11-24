@@ -7,7 +7,6 @@ import dev.ProjetoTeste.Sistema.de.Estoque.de.Produtos.repository.ProdutoReposit
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -46,23 +45,31 @@ public final class ProdutoService {
     // Editar produto
 
     public ProdutoDTO editarProduto (Long id, ProdutoDTO produtoDTO) {
+        ProdutoModel produtoEncontrado = produtoRepository.findById(id).orElseThrow(()-> new RuntimeException("produto não encontrado"));
+        produtoEncontrado.setCategoria(produtoDTO.getCategoria());
+        produtoEncontrado.setNome(produtoDTO.getNome());
+        produtoEncontrado.setImgUrl(produtoDTO.getImgUrl());
+        produtoEncontrado.setPreco(produtoDTO.getPreco());
+        produtoEncontrado.setQuantidade(produtoDTO.getQuantidade());
+        produtoEncontrado.setDescricao(produtoDTO.getDescricao());
+        ProdutoModel produtoSalvo = produtoRepository.save(produtoEncontrado);
+        return produtoMapper.map(produtoSalvo);
+
+    }
+
+   /* public ProdutoDTO editarProduto (Long id, ProdutoDTO produtoDTO) {
         Optional<ProdutoModel> produtoExistente = produtoRepository.findById(id);
         if (produtoExistente.isPresent()) {
             ProdutoModel produtoEditado = produtoMapper.map(produtoDTO);
             produtoEditado.setId(id);
             ProdutoModel produtoSalvo = produtoRepository.save(produtoEditado);
             return produtoMapper.map(produtoSalvo);
-        } return null;
-    }
-
+        } return null; */
 
     // Deletar produto
     public void deletarProduto(Long id) {
         produtoRepository.findById(id).orElseThrow(()-> new RuntimeException("Produto não encontrado"));
         produtoRepository.deleteById(id);
     }
-
-
-
 
 }
